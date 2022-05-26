@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 
+
 <body id="page-top">
 
 <!-- Page Wrapper -->
@@ -16,7 +17,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.jsp">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -165,95 +166,110 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
-                <div class="col-lg-12">
-                    <a href='<c:url value="/addTask"/>' class="btn btn-warning btn-block"
-                       style="margin-bottom: 25px;"><i
-                            class="fas fa-exclamation-triangle"></i><strong> Dodaj
-                        taska</strong></a>
-                </div>
-
-
-                <div class="col-lg-12">
+                <form method="post" action='<c:url value="/editTask"/> '>
+                    <!-- Content Row -->
                     <div class="row">
-
-                        <div class="col-lg-2">
-                            <div class="card bg-success text-white shadow">
-                                <div class="card-body">
-                                    <strong>Nowiciusz</strong>
-                                    <div class="text-white-10 small">poziom junior</div>
-                                </div>
-                            </div>
+                        <div class="col-xl-12 col-md-12 mb-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
 
 
-                            <div class="card bg-info text-white shadow">
-                                <div class="card-body">
-                                    <strong>Dojrzewajacy</strong>
-                                    <div class="text-white-10 small">poziom junior+</div>
-                                </div>
-                            </div>
+                                    <div class="form-group row">
 
+                                        <label for="firstName" class="col-2 col-form-label">Wybierz kursanta</label>
 
-                            <div class="card bg-secondary text-white shadow">
-                                <div class="card-body">
-                                    <strong>Wie co robi</strong>
-                                    <div class="text-white-10 small">poziom mid</div>
-                                </div>
-                            </div>
+                                        <div class="col-10">
+                                            <select class="form-control" id="sel1">
 
+                                                <c:forEach items="${person}" var="title">
+                                                <option hidden>wybierz</option>
+                                                <option value="${title.id}">${title.firstName} ${title.lastName}</option>
 
-                            <div class="card bg-primary text-white shadow">
-                                <div class="card-body">
-                                    <strong>Doświadczony</strong>
-                                    <div class="text-white-10 small">poziom mid+</div>
-                                </div>
-                            </div>
-
-
-                            <div class="card bg-danger text-white shadow">
-                                <div class="card-body">
-                                    <strong>Wyjadacz</strong>
-                                    <div class="text-white-10 small">poziom senior</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <c:forEach items="${task}" var="taskOption">
-                        <div class="col-lg-10">
-
-                            <div class="card mb-4 py-3 border-left-${taskOption.color}">
-                                <div class="card-body">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">${taskOption.person.firstName} ${taskOption.person.lastName}
-                                        | <strong>Dodano:</strong> ${taskOption.creationDate} |
-                                        <strong>Deadline:</strong> ${taskOption.deadline}
+                                            </select>
+                                        </div>
                                     </div>
-                                        ${taskOption.description}
+                                    </c:forEach>
+
+                                    <input type="hidden" class="form-control" name="creationDate" value="<fmt:formatDate pattern = "yyyy-MM-dd"
+         value = "${now}" />" type="date" placeholder="">
+
+
+                                    <div class="form-group row">
+                                        <label for="firstName" class="col-2 col-form-label">Deadline</label>
+                                        <div class="col-10">
+                                            <input class="form-control" name="deadline" type="date" max="3000-12-31"
+                                                   min="<fmt:formatDate pattern = "yyyy-MM-dd" value = "${now}"/>"
+                                                   placeholder="">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label for="start" class="col-2 col-form-label">Treść zadania:</label>
+                                        <div class="col-10">
+                                        <textarea class="form-control" rows="5" name="description" id="start"
+                                                  placeholder="tutaj opisz zadanie..."></textarea>
+                                        </div>
+                                    </div>
+
 
                                 </div>
                             </div>
-                            <div class="col-lg-12">
-                                <a href='<c:url value="/editTask/${taskOption.id}"/>' class="btn btn-warning btn-block"
-                                   style="margin-bottom: 25px;"><i
-                                        class="fas fa-exclamation-triangle"></i><strong> Edytuj Taska</strong></a>
-                            </div>
-                            </c:forEach>
-
-
                         </div>
-
-
                     </div>
 
 
-                </div>
-                <!-- /.container-fluid -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="form-group row">
+
+                                <div class="col-md-9 col-sm-9 col-xs-9">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" name="color" value="success"
+                                                                               checked>
+                                                <i class="btn btn-success btn-circle btn-sm"></i> poziom junior</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" name="color" value="info">
+                                                <i class="btn btn-info btn-circle btn-sm"></i> poziom junior+</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" name="color"
+                                                                               value="secondary">
+                                                <i class="btn btn-secondary btn-circle btn-sm"></i> poziom mid</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" name="color"
+                                                                               value="primary">
+                                                <i class="btn btn-primary btn-circle btn-sm"></i> poziom mid+</label>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="radio-inline"><input type="radio" name="color" value="danger">
+                                                <i class="btn btn-danger btn-circle btn-sm"></i> poziom senior</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <input class="btn btn-success pull-left" type="submit" value="Zapisz edycje"
+                           id="searchButton"></input>
+                    <a href='<c:url value="/tasks/"/>'></a>
+                </form>
 
             </div>
-            <!-- End of Main Content -->
+            <!-- /.container-fluid -->
 
-            <%@ include file="../dynamic/fotter.jspf" %>
+        </div>
+        <!-- End of Main Content -->
 
-            <%@ include file="../dynamic/javascript.jspf" %>
+        <%@ include file="../dynamic/fotter.jspf" %>
+
+        <%@ include file="../dynamic/javascript.jspf" %>
 </body>
 
 </html>

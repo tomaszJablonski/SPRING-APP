@@ -1,8 +1,19 @@
 package com.app.springapp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Person {
 
     @Id
@@ -17,54 +28,10 @@ public class Person {
     @Column(name = "START")
     private String start;
 
-    public Person() {
-    }
 
-    public Person(Long id, String firstName, String lastName, String gitHub, String start) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gitHub = gitHub;
-        this.start = start;
-    }
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH, mappedBy = "person")
+    private Set<Task> tasks = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getGitHub() {
-        return gitHub;
-    }
-
-    public void setGitHub(String gitHub) {
-        this.gitHub = gitHub;
-    }
-
-    public String getStart() {
-        return start;
-    }
-
-    public void setStart(String start) {
-        this.start = start;
-    }
 }
+
+

@@ -131,8 +131,8 @@
                                     <tr>
                                         <td>${title.firstName}</td>
                                         <td>${title.lastName}</td>
-                                        <td>${title.gitHub}<a href='<c:url value="${title.gitHub}"/>'
-                                                              class="btn btn-info btn-circle">
+                                        <td><a href='<c:url value="${title.gitHub}"/>'
+                                               class="btn btn-info btn-circle">
                                             <i class="fas fa-info-circle"></i>
                                         </a></td>
                                         <td>${title.start}</td>
@@ -140,7 +140,7 @@
                                                data-toggle="modal" data-target="#umiejetnosci"><i class="fas
                                         fa-check"></i></a></td>
 
-                                        <td><a href='#'
+                                        <td><a href='<c:url value="/editPerson/${title.id}"/>'
                                                class="btn-right btn btn-primary" role="button">Edytuj</a>
                                         </td>
                                     </tr>

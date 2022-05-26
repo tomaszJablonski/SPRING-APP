@@ -87,46 +87,52 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
+                        <form method="post" action='<c:url value="/editPerson/${person.id}"/>'>
+                            <!-- Content Row -->
+                            <div class="row">
+                                <div class="col-xl-12 col-md-12 mb-12">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <div class="form-group row">
+                                                <label for="firstName" class="col-2 col-form-label">Imię</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" name="firstName"
+                                                           value="${person.firstName}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="lastName" class="col-2 col-form-label">Nazwisko</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" name="lastName"
+                                                           value="${person.lastName}">
+                                                </div>
+                                            </div>
 
-                        <!-- Content Row -->
-                        <div class="row">
-                            <div class="col-xl-12 col-md-12 mb-12">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <div class="form-group row">
-                                            <label for="firstName" class="col-2 col-form-label">Imię</label>
-                                            <div class="col-10">
-                                                <input class="form-control" type="text" value="Imię">
+                                            <div class="form-group row">
+                                                <label for="github" class="col-2 col-form-label">URL Git</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="text" name="gitHub"
+                                                           value="${person.gitHub}">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="lastName" class="col-2 col-form-label">Nazwisko</label>
-                                            <div class="col-10">
-                                                <input class="form-control" type="text" value="Nazwisko">
-                                            </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <label for="github" class="col-2 col-form-label">URL Git</label>
-                                            <div class="col-10">
-                                                <input class="form-control" type="text" value="github">
+                                            <div class="form-group row">
+                                                <label for="start" class="col-2 col-form-label">Od czego się
+                                                    zaczęło:</label>
+                                                <div class="col-10">
+                                                    <textarea class="form-control" name="start"
+                                                              rows="5">${person.start}</textarea>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <label for="start" class="col-2 col-form-label">Od czego się zaczęło:</label>
-                                            <div class="col-10">
-                                                <textarea class="form-control" rows="5">start</textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="question" class="col-2 col-form-label">Czy kursant opanował
-                                                jakieś technologie ?</label>
-                                            <div class="col-1">
-                                                <label class="radio-inline"><input type="radio" id="question" name="checkbox" value="1">TAK
-                                                </label>
-                                            </div>
+                                            <div class="form-group row">
+                                                <label for="question" class="col-2 col-form-label">Czy kursant opanował
+                                                    jakieś technologie ?</label>
+                                                <div class="col-1">
+                                                    <label class="radio-inline"><input type="radio" id="question"
+                                                                                       name="checkbox" value="1">TAK
+                                                    </label>
+                                                </div>
                                             <div class="col-1">
                                                 <label class="radio-inline"><input type="radio" id="question" name="checkbox" value="0" checked>NIE</label>
                                             </div>
@@ -202,24 +208,28 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <input class="btn btn-success pull-left" type="submit" value="Zapisz zmiany" id="searchButton"></input>
+                            </div>
+                            <input class="btn btn-success pull-left" type="submit" value="Zapisz zmiany"
+                                   id="searchButton"></input>
+                        </form>
+                        <form method="post" action='<c:url value="/delete/${person.id}"/> '>
+                            <input class="btn btn-success pull-left" type="submit" value="Usuń"
+                                   id="searchButton"></input>
+                        </form>
+                        <%--                    <!-- Button to Open the Modal -->--%>
+                        <%--                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">--%>
+                        <%--                        Usuń--%>
+                        <%--                    </button>--%>
 
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
 
-                    <!-- Button to Open the Modal -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
-                        Usuń
-                    </button>
-
-                    <!-- The Modal -->
-                    <div class="modal" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Czy na pewno chcesz usunąć osobę ?</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Czy na pewno chcesz usunąć osobę ?</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 </div>
 
                                 <!-- Modal body -->
